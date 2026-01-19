@@ -1,0 +1,140 @@
+@startuml Diagramme de classe
+title Boutique en ligne - Class Diagram
+
+' ////////////////////////////////
+' Entities
+' ////////////////////////////////
+
+class Category {
+  - id: string
+  - name: string
+}
+
+class Product {
+  - id: string
+  - name: string
+  - description: string
+  - price: number
+  - stock: number
+  - categoryId: string
+  + isInStock(qty: number): boolean
+}
+
+class Cart {
+  - items: List<CartItem>
+  + add(product: Product, qty: number = 1): void
+  + remove(productId: string, qty: number = 1): void
+  + deleteLine(productId: string): void
+  + clear(): void
+  + getTotal(): number
+  + getTotalItems(): number
+}
+
+class CartItem {
+  - productId: string
+  - unitPrice: number
+  - quantity: number
+  + getLineTotal(): number
+}
+
+class Order {
+  - id: string
+  - createdAt: Date
+  - lines: List<OrderLine>
+  - total: number
+  + computeTotal(): number
+}
+
+class OrderLine {
+  - productId: string
+  - productName: string
+  - unitPrice: number
+  - quantity: number
+  + getLineTotal(): number
+}
+
+' ////////////////////////////////
+' Services (business logic)
+' ////////////////////////////////
+
+class CatalogService {
+  - categories: List<Category>
+  - products: List<Product>
+  + getCategories(): List<Category>
+  + getProducts(categoryId: string | null): List<Product>
+  + getProductById(id: string): Product
+  + createCategory(name: string): Category
+  + updateCategory(id: string, name: string): void
+  + deleteCategory(id: string): void
+  + createProduct(p: Product): Product
+  + updateProduct(p: Product): void
+  + deleteProduct(id: string): void
+  + setStock(productId: string, stock: number): void
+}
+
+class OrderService {
+  - orders: List<Order>
+  + placeOrder(cart: Cart): Order
+  + getLastOrders(limit: number = 10): List<Order>
+  + getOrderById(id: string): Order
+}
+
+class StockService {
+  + canFulfill(cart: Cart, catalog: CatalogService): boolean
+  + applyOrderStock(order: Order, catalog: CatalogService): void
+}
+
+' ////////////////////////////////
+' Persistence
+' ////////////////////////////////
+
+interface StorageAdapter {
+  + loadCategories(): List<Category>
+  + saveCategories(categories: List<Category>): void
+  + loadProducts(): List<Product>
+  + saveProducts(products: List<Product>): void
+  + loadOrders(): List<Order>
+  + saveOrders(orders: List<Order>): void
+}
+
+class LocalStorageAdapter
+
+StorageAdapter <|.. LocalStorageAdapter
+
+' ////////////////////////////////
+' Relations
+' ////////////////////////////////
+
+Category "1" <-- "0..*" Product : belongs to
+Cart "1" o-- "0..*" CartItem
+Order "1" o-- "1..*" OrderLine
+
+CatalogService ..> Category
+CatalogService ..> Product
+OrderService ..> Order
+OrderService ..> OrderLine
+OrderService ..> StockService
+StockService ..> CatalogService
+OrderService ..> Cart
+
+CatalogService ..> StorageAdapter : persists
+OrderService ..> StorageAdapter : persists
+
+' ////////////////////////////////
+' Rules (notes)
+' ////////////////////////////////
+
+note right of StockService
+- Le stock est mis à jour seulement quand la commande est validée
+- L'ajout au panier ne change pas le stock
+- La commande est bloquée si le stock est insuffisant
+end note
+
+note bottom of CatalogService
+Admin :
+- Affichage des dernières commandes
+- CRUD categories/produits
+- Stock mis à jour depuis le dashboard admin
+end note
+
+@enduml

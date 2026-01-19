@@ -1,0 +1,78 @@
+@startuml Cas d'utilisation
+title Boutique en ligne - Use Case Diagram
+
+left to right direction
+
+actor "Client" as Client
+actor "Admin" as Admin
+
+rectangle "Boutique en ligne (SPA)" {
+
+  '////////////////////////////////
+  ' Client
+  '////////////////////////////////
+  usecase "Consulter les catégories" as UC_CatList
+  usecase "Consulter les articles" as UC_ProdList
+  usecase "Filtrer les articles\npar catégorie" as UC_Filter
+  usecase "Ajouter un article\nau panier" as UC_AddCart
+  usecase "Retirer un article\n(ou diminuer quantité)" as UC_RemoveCart
+  usecase "Vider le panier" as UC_ClearCart
+  usecase "Passer commande" as UC_Order
+  usecase "Confirmer la commande" as UC_Confirm
+  usecase "Vérifier disponibilité\n(stock suffisant)" as UC_CheckStock
+  usecase "Mettre à jour le stock\naprès commande" as UC_ApplyStock
+  usecase "Afficher le total\net le contenu du panier" as UC_ViewCart
+
+  '////////////////////////////////
+  ' Admin
+  '////////////////////////////////
+  usecase "Gérer les catégories\n(CRUD)" as UC_AdminCatCrud
+  usecase "Gérer les articles\n(CRUD)" as UC_AdminProdCrud
+  usecase "Mettre à jour les stocks" as UC_AdminStock
+  usecase "Consulter les dernières commandes" as UC_AdminOrders
+  usecase "Consulter le détail\nd'une commande" as UC_AdminOrderDetail
+}
+
+'////////////////////////////////
+' Links - Client
+'////////////////////////////////
+Client -- UC_CatList
+Client -- UC_ProdList
+Client -- UC_Filter
+Client -- UC_AddCart
+Client -- UC_RemoveCart
+Client -- UC_ClearCart
+Client -- UC_ViewCart
+Client -- UC_Order
+
+UC_Filter ..> UC_CatList : <<include>>
+UC_ProdList ..> UC_CatList : <<include>>
+
+UC_Order ..> UC_Confirm : <<include>>
+UC_Order ..> UC_CheckStock : <<include>>
+UC_Confirm ..> UC_ApplyStock : <<include>>
+UC_Confirm ..> UC_ClearCart : <<include>>
+
+'////////////////////////////////
+' Links - Admin
+'////////////////////////////////
+Admin -- UC_AdminCatCrud
+Admin -- UC_AdminProdCrud
+Admin -- UC_AdminStock
+Admin -- UC_AdminOrders
+Admin -- UC_AdminOrderDetail
+
+UC_AdminOrders ..> UC_AdminOrderDetail : <<include>>
+
+note right of UC_CheckStock
+Si stock insuffisant :
+- Blocage confirmation
+- Afficher un message d'erreur
+end note
+
+note right of UC_AdminCatCrud
+Règles :
+Supression d'une catégorie impossible si elle référence un produit
+end note
+
+@enduml
