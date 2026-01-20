@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "ES2021",
+        "lib": [
+            "DOM",
+            "ES2021"
+        ],
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "checkJs": true
+    },
+    "include": [
+        "**/*.js"
+    ]
+}
