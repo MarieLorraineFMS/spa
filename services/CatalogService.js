@@ -67,7 +67,6 @@ export class CatalogService {
      *
      * Créer une catégorie
      * @param {Category} param - {id:string, name:string}
-     * @param
      * @returns {Category}
      */
     createCategory({ id, name }) {

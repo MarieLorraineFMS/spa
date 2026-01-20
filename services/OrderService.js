@@ -1,3 +1,4 @@
+import { Cart } from "../models/Cart.js";
 import { Order } from "../models/Order.js";
 import { OrderLine } from "../models/OrderLine.js";
 
@@ -8,6 +9,13 @@ import { OrderLine } from "../models/OrderLine.js";
  * - Délégue la vérification du stock à StockService
  */
 export class OrderService {
+    /**
+ * @param {object} [params]
+ * @param {any} [params.stockService]
+ * @param {any} [params.catalogService]
+ * @param {Array<any>} [params.orders]
+ */
+
     constructor({ stockService, catalogService, orders = [] } = {}) {
         if (!stockService) {
             throw new Error("OrderService: stockService is required");
@@ -45,6 +53,7 @@ export class OrderService {
         const check = this.stockService.canFulfill(cart, this.catalogService);
         if (!check.ok) {
             // Mesage UI
+            /** @type {Error & { code?: string, details?: any }} */
             const err = new Error("Erreur lors de la commande : Stock insuffisant");
             err.code = "INSUFFICIENT_STOCK";
             err.details = check;
@@ -56,7 +65,7 @@ export class OrderService {
             const product = this.catalogService.getProductById(item.productId);
             return new OrderLine({
                 productId: item.productId,
-                productName: product ? product.name : "Unknown product",
+                productName: product ? product.name : "Produit inconnu",
                 unitPrice: item.unitPrice,
                 quantity: item.quantity,
             });

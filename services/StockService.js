@@ -1,3 +1,6 @@
+import { Cart } from "../models/Cart";
+import { CatalogService } from "./CatalogService";
+
 /**
  * StockService
  * - Vérifie si un produit ajouté au panier est en stock

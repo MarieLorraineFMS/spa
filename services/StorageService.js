@@ -1,3 +1,8 @@
+import { Cart } from "../models/Cart";
+import { Category } from "../models/Category";
+import { Order } from "../models/Order";
+import { Product } from "../models/Product";
+
 /**
  * StorageService
  * - En charge de la persistance dans le local storage
@@ -120,7 +125,7 @@ export class StorageService {
     /**
     *
     * Sauvegarde des commandes
-    * @param {Order[]} Orders
+    * @param {Order[]} orders
     * @returns {void}
     */
     saveOrders(orders) {

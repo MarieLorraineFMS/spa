@@ -1,4 +1,5 @@
 import { CartItem } from "./CartItem.js";
+import { Product } from "./Product.js";
 
 
 export class Cart {

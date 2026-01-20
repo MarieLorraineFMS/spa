@@ -10,7 +10,7 @@ export class OrderLine {
     /**
      *
      * Calculer le sous-total d'une ligne de commande
-     * @returns {void}
+     * @returns {number}
      */
     getLineTotal() {
         return this.unitPrice * this.quantity;

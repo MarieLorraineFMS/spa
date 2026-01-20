@@ -8,7 +8,7 @@ export class CartItem {
     /**
      *
      * Calculer le sous-total d'une ligne du panier
-     * @returns {void}
+     * @returns {number}
      */
     getLineTotal() {
         return this.unitPrice * this.quantity;
