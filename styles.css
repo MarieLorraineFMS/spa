@@ -1,0 +1,411 @@
+/* ////////////////////////////////////////////// THEME ////////////////////////////////////////////// */
+
+:root {
+    --bg: #1f2428;
+    --topbar: #1b1f23;
+    --panel: #22282d;
+    --panel-2: #1b1f23;
+    --border: rgba(255, 255, 255, 0.12);
+    --text: #e9ecef;
+    --muted: rgba(166, 167, 167, 0.7);
+    --primary: #2f6feb;
+    --primary-soft: rgba(47, 111, 235, 0.18);
+    --danger: #ff5d5d;
+    --success: #2ea043;
+}
+
+/* ////////////////////////////////////////////// GLOBAL ////////////////////////////////////////////// */
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Patrick Hand', cursive;
+}
+
+main.container {
+    max-width: 1100px;
+    min-height: calc(100vh - 130px);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* ////////////////////////////////////////////// HEADER / FOOTER ////////////////////////////////////////////// */
+
+header {
+    background-color: var(--topbar);
+    border-bottom: 1px solid var(--border);
+}
+
+footer {
+    background-color: var(--topbar);
+    border-top: 1px solid var(--border);
+}
+
+/* ////////////////////////////////////////////// NAV BUTTONS ////////////////////////////////////////////// */
+
+button[data-nav],
+button[data-client-page] {
+    min-width: 96px;
+}
+
+/* ////////////////////////////////////////////// PANEL ////////////////////////////////////////////// */
+
+.Panel {
+    background-color: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem;
+    color: var(--text);
+}
+
+/* ////////////////////////////////////////////// CATEGORIES ////////////////////////////////////////////// */
+
+.Categories {
+    padding: 0.5rem 0;
+}
+
+.Categories__item {
+    transition: all 0.15s ease-in-out;
+}
+
+.Categories__item.is-active {
+    font-weight: 600;
+}
+
+/* ////////////////////////////////////////////// PRODUCTS ////////////////////////////////////////////// */
+
+#products .row {
+    row-gap: 1rem;
+}
+
+.ProductCard {
+    background-color: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--text);
+}
+
+.ProductCard .text-muted {
+    color: var(--muted) !important;
+}
+
+.ProductCard__price {
+    background: transparent !important;
+    border: 1px solid var(--border);
+    color: var(--text) !important;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.ProductCard__add.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.ProductCard__add.btn-outline-secondary,
+.ProductCard__add.btn-outline-danger,
+.ProductCard__add.btn-outline-light {
+    border-color: var(--border);
+}
+
+.ProductCard__add:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* ////////////////////////////////////////////// CART ////////////////////////////////////////////// */
+
+.Cart {
+    background-color: transparent;
+    color: var(--text);
+}
+
+.Cart h5 {
+    font-weight: 600;
+}
+
+.Cart .list-group-item {
+    background-color: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 12px;
+}
+
+.Cart .list-group-item+.list-group-item {
+    margin-top: 0.5rem;
+}
+
+.Cart .text-muted {
+    color: var(--muted) !important;
+}
+
+.Cart button[data-action="checkout"] {
+    min-width: 140px;
+}
+
+.CartLayout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 1rem;
+}
+
+@media (max-width: 900px) {
+    .CartLayout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ////////////////////////////////////////////// ADMIN ////////////////////////////////////////////// */
+
+.AdminPage {
+    background-color: transparent;
+}
+
+#admin .accordion {
+    background: transparent;
+}
+
+.accordion-item {
+    background-color: transparent;
+    border: none;
+}
+
+.accordion-button {
+    background-color: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: none;
+    margin-bottom: 10px;
+}
+
+.accordion-item+.accordion-item {
+    margin-top: 0.75rem;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: rgba(47, 111, 235, 0.18);
+    color: #9ec1ff;
+    margin-bottom: 10px;
+}
+
+.accordion-body {
+    background-color: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+}
+
+.AdminOrders .list-group-item,
+.AdminCategories .list-group-item,
+.AdminProducts .list-group-item {
+    background-color: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 12px;
+}
+
+/* ////////////////////////////////////////////// FORMS ////////////////////////////////////////////// */
+
+.form-control,
+.form-select {
+    background-color: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.form-control::placeholder {
+    color: rgba(233, 236, 239, 0.55);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--panel-2);
+    color: var(--text);
+    border-color: rgba(47, 111, 235, 0.65);
+    box-shadow: 0 0 0 0.2rem rgba(47, 111, 235, 0.15);
+}
+
+/* ////////////////////////////////////////////// BADGES / ALERTS ////////////////////////////////////////////// */
+
+.badge.text-bg-light {
+    background-color: transparent !important;
+    border: 1px solid var(--border);
+    color: var(--text) !important;
+    font-weight: 500;
+}
+
+.alert {
+    background-color: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 12px;
+}
+
+/* ////////////////////////////////////////////// BOOTSTRAP OVERRIDES ////////////////////////////////////////////// */
+
+.btn-outline-secondary {
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.btn-outline-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-outline-warning {
+    border-color: rgba(255, 193, 7, 0.7);
+    color: rgba(255, 193, 7, 0.95);
+}
+
+.btn-outline-warning:hover {
+    background-color: rgba(255, 193, 7, 0.12);
+}
+
+.btn-outline-danger {
+    border-color: rgba(255, 93, 93, 0.7);
+    color: rgba(255, 93, 93, 0.95);
+}
+
+.btn-outline-danger:hover {
+    background-color: rgba(255, 93, 93, 0.12);
+}
+
+/* ////////////////////////////////////////////// RESPONSIVE ////////////////////////////////////////////// */
+
+@media (max-width: 900px) {
+    main.container {
+        max-width: 95vw;
+    }
+}
+
+/* ////////////////////////////////////////////// ICONS ////////////////////////////////////////////// */
+
+.Icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.Icon--danger {
+    color: rgba(255, 93, 93, 0.95);
+}
+
+.Icon--success {
+    color: rgba(46, 160, 67, 0.95);
+}
+
+/* ////////////////////////////////////////////// TAGS / CATEGORY ////////////////////////////////////////////// */
+
+.Tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+    max-width: fit-content;
+}
+
+.Tag__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.Categories__item.is-active {
+    box-shadow: 0 0 0 0.2rem var(--primary-soft);
+    border-color: rgba(47, 111, 235, 0.75) !important;
+}
+
+.Tag--filtered {
+    box-shadow: 0 0 0 0.2rem var(--primary-soft);
+}
+
+/* ////////////////////////////////////////////// HERO ////////////////////////////////////////////// */
+
+[data-hero] .ProductImageWrapper,
+[data-hero] .ProductImagePlaceholder {
+    height: 200px !important;
+}
+
+[data-hero] img {
+    height: 200px !important;
+}
+
+/* ////////////////////////////////////////////// MODAL ////////////////////////////////////////////// */
+
+#app-modal .modal-body p {
+    line-height: 1.45;
+}
+
+/* ////////////////////////////////////////////// TEXT-MUTED ////////////////////////////////////////////// */
+.AdminProducts .text-muted,
+.Panel .text-muted,
+#app-modal .text-muted,
+footer .text-muted {
+    color: var(--muted) !important;
+}
+
+/* ////////////////////////////////////////////// ICON BUTTONS ////////////////////////////////////////////// */
+
+/* ////////////////////////////////////////////// NAV EXCALIDRAW ICONS ////////////////////////////////////////////// */
+
+.btn-icon {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    border: none;
+    min-width: unset !important;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo-btn {
+    min-width: fit-content !important;
+    border-radius: 16px !important;
+    border: none;
+}
+
+#logo-btn img {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.btn-icon img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    object-fit: contain;
+}
+
+.btn-icon:hover {
+    transform: translateY(-1px);
+}
+
+/* ////////////////////////////////////////////// HOME ////////////////////////////////////////////// */
+
+#client-home {
+    flex: 1;
+    min-height: calc(100vh - 130px);
+    background-image: url("./assets/bg.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
