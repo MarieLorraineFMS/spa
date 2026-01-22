@@ -63,4 +63,17 @@ export const renderAdminPage = (app, { containerSelector = "#admin" } = {}) => {
   renderOrders(app, { containerSelector: "#admin-orders", limit: 10 });
   renderAdminCategories(app, { containerSelector: "#admin-categories" });
   renderAdminProducts(app, { containerSelector: "#admin-products" });
+
+  // On évite de brancher 50 listeners si renderAdminPage est rappelée
+  app.uiState = app.uiState || {};
+  if (!app.uiState._adminCategoriesListenerBound) {
+    app.uiState._adminCategoriesListenerBound = true;
+
+    window.addEventListener("admin:categories-changed", () => {
+      // Quand les catégories changent, on rerender le formulaire "Articles"
+      // pour mettre à jour le <select> des catégories.
+      renderAdminProducts(app, { containerSelector: "#admin-products" });
+    });
+  }
+
 };
