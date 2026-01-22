@@ -6,13 +6,13 @@ import { renderHome } from "./renderHome.js";
 import { renderHeader } from "./renderHeader.js";
 
 /**
- * Render racine : choisit la vue CLIENT ou ADMIN selon app.uiState.mode
- * et gère la navigation client (home / boutique / panier).
+ * Render racine : CLIENT ou ADMIN selon app.uiState.mode
+ * Navigation client (home / boutique / panier).
  *
  * @param {object} app
  */
 export const renderApp = (app) => {
-    // ---------------- UI STATE ----------------
+    ////////////////////////////////// UI STATE ////////////////////////////////
     app.uiState = app.uiState || {};
 
     // mode : client | admin
@@ -25,7 +25,7 @@ export const renderApp = (app) => {
     // page client : home | boutique | panier
     app.uiState.clientPage = app.uiState.clientPage || "home";
 
-    // ---------------- DOM ROOTS ----------------
+    ////////////////////////////////// DOM ////////////////////////////////
     const clientRoot = document.querySelector("#client");
     const adminRoot = document.querySelector("#admin");
 
@@ -38,37 +38,35 @@ export const renderApp = (app) => {
 
     if (!(clientBoutique instanceof HTMLElement)) throw new Error("renderApp: #client-boutique introuvable");
     if (!(clientPanier instanceof HTMLElement)) throw new Error("renderApp: #client-panier introuvable");
-    // home est optionnel, mais si tu l’as dans le HTML on l’utilise
     const hasHome = clientHome instanceof HTMLElement;
 
-    // ---------------- HEADER (icons + dot + auth btn) ----------------
+    ////////////////////////////////// HEADER ////////////////////////////////
     renderHeader(app, { onRerender: () => renderApp(app) });
     ;
 
-    // ---------------- HELPERS ----------------
+    ////////////////////////////////// HELPERS ////////////////////////////////
     const showClientPage = (page) => {
         if (hasHome) clientHome.classList.toggle("d-none", page !== "home");
         clientBoutique.classList.toggle("d-none", page !== "boutique");
         clientPanier.classList.toggle("d-none", page !== "panier");
     };
 
-    // =======================
+    //////////////////////////////////
     // MODE ADMIN
-    // =======================
+    //////////////////////////////////
     if (app.uiState.mode === "admin") {
         clientRoot.classList.add("d-none");
         adminRoot.classList.remove("d-none");
 
-        // Render admin (accordion commandes / catégories / articles)
         renderAdminPage(app, { containerSelector: "#admin" });
 
         bindNav(app);
         return;
     }
 
-    // =======================
+    //////////////////////////////////
     // MODE CLIENT
-    // =======================
+    //////////////////////////////////
     adminRoot.classList.add("d-none");
     clientRoot.classList.remove("d-none");
 
@@ -109,7 +107,7 @@ export const renderApp = (app) => {
                 onCartChanged: () => {
                     app.persistAll();
                     renderHeader(app, { onRerender: () => renderApp(app) });
-                    ; // met à jour le dot panier
+                    ; // maj dot panier
                 },
             });
         },
@@ -129,7 +127,7 @@ export const renderApp = (app) => {
 };
 
 /**
- * Branche la navigation en onclick (pas d’empilement)
+ * Branche la navigation en onclick
  * - data-client-page="home|boutique|panier"
  * - data-nav="admin"
  *

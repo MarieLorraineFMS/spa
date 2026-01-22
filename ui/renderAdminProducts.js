@@ -257,7 +257,8 @@ const wireImageSelectPreview = (container) => {
  */
 const renderProductRow = (p, categoryNameById) => {
   const categoryName = categoryNameById[p.categoryId] || p.categoryId;
-  const imageUrl = p.imageUrl ? String(p.imageUrl) : "";
+  const imageUrl = String(p.imageUrl) || "/assets/products/preview.png";
+
   const featuredBadge = p.isFeatured ? `<span class="badge text-bg-primary ms-2">Best-seller</span>` : "";
 
   return `

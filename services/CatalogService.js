@@ -69,7 +69,7 @@ export class CatalogService {
      * @param {Category} param - {id:string, name:string}
      * @returns {Category}
      */
-    createCategory({ id, name, color, icon, imageUrl }) {
+    createCategory({ id, name, color, icon }) {
         if (!name || !name.trim()) {
             throw new Error("createCategory: name is required");
 
@@ -79,7 +79,7 @@ export class CatalogService {
 
         }
 
-        const category = new Category({ id, name: name.trim(), color, icon, imageUrl });
+        const category = new Category({ id, name: name.trim(), color, icon });
         this.categories.push(category);
         return category;
     }

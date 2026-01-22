@@ -73,7 +73,7 @@ export const renderHeader = (app, { onRerender = () => { } } = {}) => {
     // Admin : "mode admin" & logout & boutique
     if (isAdmin) {
         right.innerHTML = `
-      ${onHome ? iconBtn({ attrs: 'data-client-page="boutique"', src: "./assets/nav/shop.png", label: "Retour boutique" }) : ""}
+      ${iconBtn({ attrs: 'data-client-page="boutique"', src: "./assets/nav/shop.png", label: "Retour boutique" })}
       ${iconBtn({ attrs: 'data-action="noop"', src: "./assets/nav/user.png", label: "Admin", extraClass: "btn-outline-warning" })}
       ${textBtn({ attrs: 'data-action="logout"', text: "Se déconnecter" })}
     `;
