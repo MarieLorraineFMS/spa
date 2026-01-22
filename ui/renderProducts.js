@@ -205,7 +205,7 @@ const renderHeroCard = (p, cat, color) => `
               data-add-product-id="${escapeHtml(p.id)}"
               ${p.stock <= 0 ? "disabled" : ""}
             >
-              ${p.stock <= 0 ? "Indisponible" : `<i class="bi bi-cart-plus me-1"></i>Ajouter`}
+             <span class="d-flex fs-5 justify-content-start align-items-center gap-2"> ${p.stock <= 0 ? `<i class="bi bi-x-circle me-1"></i>Indisponible` : `<i class="bi bi-cart-plus me-1"></i>Ajouter au panier</span>`}
             </button>
           </div>
         </div>
@@ -244,11 +244,11 @@ const renderProductCard = (p, categories, filtered) => {
       <div class="card h-100 ProductCard">
         <div class="card-body d-flex flex-column gap-2">
 
-          <div>${renderProductImage(p)}
-          <span class="Tag ${filtered ? "Tag--filtered" : ""}" style="border-color:${escapeHtml(color)};">
+          <div class="d-flex justify-content-between">${renderProductImage(p)}
+          <div><span class="Tag ${filtered ? "Tag--filtered" : ""}" style="border-color:${escapeHtml(color)};">
             <span class="Tag__dot" style="background:${escapeHtml(color)};"></span>
             <span>${escapeHtml(cat?.name ?? "")}</span>
-          </span></div>
+          </span></div></div>
           <div class="d-flex justify-content-between">
             <h6 class="mb-0">${escapeHtml(p.name)}</h6>
             <span class="badge text-bg-light">${formatPrice(p.price)}</span>
@@ -259,14 +259,15 @@ const renderProductCard = (p, categories, filtered) => {
               ${escapeHtml(p.shortDescription ?? "")}
             </p>
           <div class="mt-auto d-flex justify-content-end">
-            <button
-              class="btn btn-sm btn-outline-success"
+             <button
+              class="btn btn-outline-success btn-sm"
               data-add-product-id="${escapeHtml(p.id)}"
-              ${p.stock <= 0 ? "disabled" : ""}>
-                ${p.stock <= 0 ? `<i class="bi bi-slash-circle me-1"></i>Indisponible` :
-      `<i class="bi bi-cart-plus me-1"></i>Ajouter`
-    }
-
+              ${p.stock <= 0 ? "disabled" : ""}
+            >
+             <span class="d-flex fs-5 justify-content-start align-items-center gap-2">
+             ${p.stock <= 0 ? `<i class="bi bi-x-circle me-1"></i>Indisponible`
+      : `<i class="bi bi-cart-plus me-1"></i>Ajouter au panier
+              </span>`}
             </button>
           </div>
 
