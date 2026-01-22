@@ -24,50 +24,16 @@
     <!-- ////////////////////////////////// HEADER ////////////////////////////////// -->
 
     <header class="border-bottom border-secondary mb-3">
-        <div class="container-fluid py-2">
+        <div class="container-fluid py-4 ">
 
             <div class="d-flex align-items-center justify-content-between">
 
                 <!-- Logo + Home -->
-                <div class="fw-semibold d-flex align-items-center gap-2">
-                    <button type="button" class="btn btn-sm btn-outline-secondary " data-client-page="boutique"
-                        aria-label="Boutique" id="logo-btn">
-                        <img src="./assets/nav/logo.png" alt="logo" />Boutique
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary btn-icon" data-client-page="home"
-                        aria-label="Accueil">
-                        <img src="./assets/nav/home.png" alt="" />
-                    </button>
+                <div class="fw-semibold d-flex align-items-center gap-4" id="nav-left"></div>
 
-                </div>
+                <!-- Actions -->
+                <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end" id="nav-right"></div>
 
-                <!-- Navigation -->
-                <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
-
-                    <button type="button" class="btn btn-sm btn-outline-secondary" id="auth-btn">
-                        <i class="bi bi-box-arrow-in-right me-1"></i><span id="auth-text">Se connecter</span>
-                    </button>
-
-                    <button type="button" class="btn btn-sm btn-outline-secondary btn-icon" data-client-page="boutique"
-                        aria-label="Boutique">
-                        <img src="./assets/nav/shop.png" alt="logo" style="width:27px; height:27px" />
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary btn-icon position-relative"
-                        data-client-page="panier" aria-label="Panier">
-                        <img src="./assets/nav/cart.png" alt="" />
-                        <span id="cart-dot"
-                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-dark rounded-circle d-none"></span>
-                    </button>
-
-
-                    <button type="button" class="btn btn-sm btn-outline-warning btn-icon" data-nav="admin"
-                        aria-label="Admin">
-                        <img src="./assets/nav/user.png" alt="" />
-                    </button>
-
-                    </button>
-
-                </div>
             </div>
         </div>
     </header>
@@ -78,7 +44,7 @@
         <section id="client">
 
             <!-- HOME -->
-            <section id="client-home" class="d-none"></section>
+            <section id="client-home" class="d-none align-items-end pb-2"></section>
 
             <!-- BOUTIQUE -->
             <section id="client-boutique">
