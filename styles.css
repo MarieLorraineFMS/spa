@@ -9,12 +9,27 @@
     --text: #e9ecef;
     --muted: rgba(166, 167, 167, 0.7);
     --primary: #2f6feb;
+    --info: #0dcaf0;
     --primary-soft: rgba(47, 111, 235, 0.18);
     --danger: #ff5d5d;
     --success: #2ea043;
+    --bs-accordion-active-color: white !important;
+    --bs-accordion-btn-color: white !important;
 }
 
 /* ////////////////////////////////////////////// GLOBAL ////////////////////////////////////////////// */
+.accordion-button::after {
+    content: "";
+    width: 4rem;
+    height: 4rem;
+    background-size: 4rem;
+    background-repeat: no-repeat;
+    background-image: url("/assets/actions/chevron-down.png");
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("/assets/actions/chevron-down.png");
+}
 
 body {
     background-color: var(--bg);
@@ -278,6 +293,11 @@ button[data-client-page] {
     background-color: rgba(255, 93, 93, 0.12);
 }
 
+.btn-disabled {
+    color: var(--info) !important;
+    font-weight: 700 !important;
+}
+
 /* ////////////////////////////////////////////// RESPONSIVE ////////////////////////////////////////////// */
 
 @media (max-width: 900px) {
@@ -392,7 +412,7 @@ footer .text-muted {
 }
 
 .btn-icon:hover {
-    transform: translateY(-1px);
+    transform: translateY(-3px);
 }
 
 /* ////////////////////////////////////////////// HOME ////////////////////////////////////////////// */
