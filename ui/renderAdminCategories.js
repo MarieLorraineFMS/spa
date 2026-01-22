@@ -23,7 +23,9 @@ export const renderAdminCategories = (app, { containerSelector = "#admin-categor
 
       <div class="d-flex gap-2 mb-3">
         <input class="form-control form-control-sm" id="cat-name" placeholder="Nom de catégorie" />
-        <button class="btn btn-sm btn-primary" data-action="add-cat">Ajouter</button>
+<button class="btn btn-sm btn-success d-flex flex-nowrap align-items-center gap-2" data-action="add-cat">
+  <i class="bi bi-plus-circle"></i>Ajouter
+</button>
       </div>
 
       <div class="list-group mb-2">
@@ -32,7 +34,7 @@ export const renderAdminCategories = (app, { containerSelector = "#admin-categor
 
       <div class="d-flex justify-content-between align-items-center">
         <button class="btn btn-sm btn-outline-danger" data-action="delete-selected">
-          Supprimer la sélection
+          <i class="bi bi-trash me-1"></i>Supprimer la sélection
         </button>
         <span class="text small">${categories.length} catégorie(s)</span>
       </div>
