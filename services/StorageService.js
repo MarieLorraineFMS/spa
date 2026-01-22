@@ -1,7 +1,7 @@
-import { Cart } from "../models/Cart";
-import { Category } from "../models/Category";
-import { Order } from "../models/Order";
-import { Product } from "../models/Product";
+import { Cart } from "../models/Cart.js";
+import { Category } from "../models/Category.js";
+import { Order } from "../models/Order.js";
+import { Product } from "../models/Product.js";
 
 /**
  * StorageService

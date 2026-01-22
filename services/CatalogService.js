@@ -69,7 +69,7 @@ export class CatalogService {
      * @param {Category} param - {id:string, name:string}
      * @returns {Category}
      */
-    createCategory({ id, name }) {
+    createCategory({ id, name, color, icon, imageUrl }) {
         if (!name || !name.trim()) {
             throw new Error("createCategory: name is required");
 
@@ -79,7 +79,7 @@ export class CatalogService {
 
         }
 
-        const category = new Category({ id, name: name.trim() });
+        const category = new Category({ id, name: name.trim(), color, icon, imageUrl });
         this.categories.push(category);
         return category;
     }
@@ -136,7 +136,7 @@ export class CatalogService {
      * @param {Product} param - {id:string, name:string, stock:number, categoryId:string}
      * @returns {Product}
      */
-    createProduct({ id, name, price, stock, categoryId }) {
+    createProduct({ id, name, price, stock, categoryId, imageUrl, isFeatured, shortDescription, description }) {
         if (!name || !name.trim()) {
             throw new Error("createProduct: name is required");
         }
@@ -161,6 +161,11 @@ export class CatalogService {
             price,
             stock,
             categoryId,
+            isFeatured,
+            imageUrl,
+            shortDescription,
+            description
+
         });
 
         this.products.push(product);

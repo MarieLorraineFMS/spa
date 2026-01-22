@@ -18,7 +18,7 @@ export class Cart {
 
         const existing = this.items.find((item) => item.productId === product.id);
         if (existing) {
-            existing.quantity += qty;
+            existing.quantity = Number(existing.quantity) + Number(qty);
             return;
         }
 
@@ -27,6 +27,7 @@ export class Cart {
                 productId: product.id,
                 unitPrice: product.price,
                 quantity: qty,
+                imageUrl: product.imageUrl
             })
         );
     }
@@ -43,7 +44,7 @@ export class Cart {
         const existing = this.items.find((it) => it.productId === productId);
         if (!existing) return;
 
-        existing.quantity -= qty;
+        existing.quantity = Number(existing.quantity) - Number(qty);
 
         if (existing.quantity <= 0) {
             this.items = this.items.filter((it) => it.productId !== productId);

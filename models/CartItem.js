@@ -1,8 +1,10 @@
 export class CartItem {
-    constructor({ productId, unitPrice, quantity }) {
+    constructor({ productId, unitPrice, quantity, imageUrl }) {
         this.productId = productId;
-        this.unitPrice = unitPrice;
-        this.quantity = quantity;
+        this.quantity = Number(quantity);
+        this.unitPrice = Number(unitPrice);
+        this.imageUrl = imageUrl
+
     }
 
     /**

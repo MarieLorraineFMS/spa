@@ -1,5 +1,5 @@
-import { Cart } from "../models/Cart";
-import { CatalogService } from "./CatalogService";
+import { Cart } from "../models/Cart.js";
+import { CatalogService } from "./CatalogService.js";
 
 /**
  * StockService
