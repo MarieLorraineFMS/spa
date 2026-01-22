@@ -57,18 +57,26 @@ export const renderCart = (
             <h5 class="mb-0">Récapitulatif</h5>
           </div>
 
-          <div class="d-flex justify-content-between align-items-center py-2 border-top" style="border-color: rgba(255,255,255,0.12) !important;">
-            <div class="text-muted small">Total</div>
+          <div class="text-info d-flex justify-content-between align-items-center py-2 border-top" style="border-color: rgba(255,255,255,0.12) !important;">
+            <div class="text-muted small">Sous-total</div>
+            <div class="fw-semibold ">${formatPrice(app.cart.getTotal())}</div>
+          </div>
+          <div class=" text-info d-flex justify-content-between align-items-center py-2 border-top" style="border-color: rgba(255,255,255,0.12) !important;">
+            <div class="text-muted small">Livraison</div>
+            <div class="fw-semibold">${formatPrice(0)}</div>
+          </div>
+          <div class="  text-info d-flex justify-content-between align-items-center py-2 border-top" style="border-color: rgba(255,255,255,0.12) !important;">
+            <div class="text-muted small">TOTAL</div>
             <div class="fw-semibold">${formatPrice(app.cart.getTotal())}</div>
           </div>
 
           <button
             type="button"
-            class="btn btn-primary w-100 mt-3 ${items.length === 0 ? "disabled" : ""}"
+            class="btn btn-outline-success w-100 mt-3 btn-sm fw-semibold ${items.length === 0 ? "disabled" : ""}"
             data-action="checkout"
             ${items.length === 0 ? "disabled" : ""}
-          >
-            Commander
+          ><span class="d-flex fs-5 justify-content-start align-items-center gap-2">
+       <i class="bi bi-check-lg me-1"></i>Commander</span>
           </button>
 
 
@@ -157,14 +165,15 @@ const renderCartLine = (app, it) => {
 
   return `
     <div class="list-group-item d-flex align-items-center justify-content-between gap-2">
-      <div class="me-auto">
-        <div class="fw-semibold">${escapeHtml(name)}</div>
+      <div class="m-2 flex-fill">
+        <div class="d-flex fw-semibold justify-content-between">${escapeHtml(name)}<span>${formatPrice(it.unitPrice)}</span></div>
         <div class="text-muted small d-flex align-items-center" style="gap:20px;">
-            <span style="opacity:0.75;">${renderProductImage(it, 50)}</span>${formatPrice(it.unitPrice)} • Sous-total : ${formatPrice(it.getLineTotal())}
+            <span style="opacity:0.75;">${renderProductImage(it, 50)}</span>${product.shortDescription}
         </div>
       </div>
 
-      <div class="d-flex align-items-center gap-2">
+      <div class="d-flex align-items-center gap-2 align-self-end
+ m-2">
         <div class="btn-group" role="group" aria-label="Quantité">
           <button type="button" class="btn btn-sm btn-outline-secondary" data-action="dec" data-product-id="${it.productId}"> <i class="bi bi-dash"></i></button>
           <button type="button" class="btn btn-sm btn-outline-secondary" disabled>${it.quantity}</button>
@@ -173,13 +182,17 @@ const renderCartLine = (app, it) => {
 
         <button
           type="button"
-          class="btn btn-sm btn-outline-danger"
+          class="btn btn-sm btn-outline-danger btn-icon"
           data-action="remove"
           data-product-id="${it.productId}"
           aria-label="Supprimer"
         >
-          <i class="bi bi-trash"></i>
+              <img src="/assets/actions/trash.png"
+           alt="trash"
+           loading="lazy"
+           style="object-fit:contain;" />
         </button>
+         <span class="text-info">Sous-total : ${formatPrice(it.getLineTotal())}<span>
       </div>
     </div>
   `;
